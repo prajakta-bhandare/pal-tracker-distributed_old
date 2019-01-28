@@ -6,6 +6,10 @@ applications:
   memory: 1G
   instances: 1
   env:
-    REGISTRATION_SERVER_ENDPOINT: http://registration-pal-prajakta.apps.pikes.pal.pivotal.io
+    GRANT_TYPE: client_credentials
   services:
   - tracker-allocations-database
+  - tracker-service-registry
+  - tracker-circuit-breaker-dashboard
+  - tracker-sso
+  - tracker-config-server

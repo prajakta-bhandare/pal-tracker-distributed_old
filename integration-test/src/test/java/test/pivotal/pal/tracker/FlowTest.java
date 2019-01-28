@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import test.pivotal.pal.tracker.support.ApplicationServer;
 import test.pivotal.pal.tracker.support.HttpClient;
-import test.pivotal.pal.tracker.support.Response;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.fail;
@@ -41,7 +40,7 @@ public class FlowTest {
         return "http://localhost:8884" + path;
     }
 
-    private long findResponseId(Response response) {
+    private long findResponseId(HttpClient.Response response) {
         try {
             return JsonPath.parse(response.body).read("$.id", Long.class);
         } catch (PathNotFoundException e) {
@@ -75,7 +74,7 @@ public class FlowTest {
 
     @Test
     public void testBasicFlow() throws Exception {
-        Response response;
+        HttpClient.Response response;
 
         response = httpClient.get(registrationServerUrl("/"));
         assertThat(response.body).isEqualTo("Noop!");
